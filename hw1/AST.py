@@ -7,7 +7,7 @@ def show_ast(path):
         ast_tree = ast.parse(f.read())
     printed_ast = astunparse.dump(ast_tree)
 
-    with open('ast_tree.txt', 'w') as f:
+    with open('artifacts/ast_tree.txt', 'w') as f:
         f.write(printed_ast)
 
 
