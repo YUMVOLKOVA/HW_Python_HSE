@@ -6,6 +6,7 @@ def show_ast(path):
     with open(path, "r") as f:
         ast_tree = ast.parse(f.read())
     printed_ast = astunparse.dump(ast_tree)
+
     with open('ast_tree.txt', 'w') as f:
         f.write(printed_ast)
 
