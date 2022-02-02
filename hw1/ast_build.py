@@ -12,4 +12,4 @@ def show_ast(path):
 
 
 if __name__ == "__main__":
-    show_ast('easy.py')
+    show_ast('fibonacci.py')
