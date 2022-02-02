@@ -1,1 +1,2 @@
 networkx==2.5
+astunparse~=1.6.3
