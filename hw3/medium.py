@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.lib.mixins import NDArrayOperatorsMixin
 from numbers import Number
+import re
 
 def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
     if action == 'add':
