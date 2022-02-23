@@ -18,9 +18,9 @@ class BeautifulPrint:
         a = '['
         for i, row in enumerate(self.data):
             if i != len(self.data) - 1:
-                a += ', '.join(str(row).split(' ')) + '\n'
+                a += re.sub(' +', ' ', ' '.join(str(row).split(' '))) + '\n'
             else:
-                a += ', '.join(str(row).split(' ')) + ']'
+                a += re.sub(' +', ' ', ' '.join(str(row).split(' '))) + ']'
         return a
 
 class SaveFile:
@@ -86,4 +86,3 @@ if __name__ == '__main__':
     (matrix_1 * matrix_2).save_result(f'{path}/matrix*.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'matmul'))
     (matrix_1 @ matrix_2).save_result(f'{path}/matrix@.txt')
-
