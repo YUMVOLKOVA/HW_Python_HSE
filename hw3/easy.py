@@ -72,8 +72,8 @@ if __name__ == '__main__':
     matrix_2 = My_Matrix(data=list_2)
 
     path = 'artifacts/easy'
-    print(f'matrix_1: \n {matrix_1}')
-    print(f'matrix_2: \n {matrix_2}')
+    print(f'matrix_1: \n {matrix_1.data}')
+    print(f'matrix_2: \n {matrix_2.data}')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'add'))
     save_results(str_result((matrix_1 + matrix_2).data), f'{path}/matrix+.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'mul'))
