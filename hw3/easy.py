@@ -3,12 +3,25 @@ import numpy as np
 def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
     if action == 'add':
         print('add')
+        print('matrix_1: \n')
+        print('matrix_2: \n')
+        print(matrix_1 + matrix_2)
+        print(np.array(list_1) + np.array(list_2))
+        print(np.array(list_1) + np.array(list_2))
         return (matrix_1 + matrix_2) == (np.array(list_1) + np.array(list_2))
     if action == 'mul':
         print('mul')
+        print('matrix_1: \n')
+        print('matrix_2: \n')
+        print(matrix_1 * matrix_2)
+        print(np.array(list_1) * np.array(list_2))
         return (matrix_1 * matrix_2) == (np.array(list_1) * np.array(list_2))
     if action == 'matmul':
         print('matmul')
+        print('matrix_1: \n')
+        print('matrix_2: \n')
+        print(matrix_1 @ matrix_2)
+        print(np.array(list_1) @ np.array(list_2))
         return (matrix_1 @ matrix_2) == (np.array(list_1) @ np.array(list_2))
 
 def save_results(data, path):
@@ -73,10 +86,10 @@ if __name__ == '__main__':
 
     path = 'artifacts/easy'
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'add'))
-    save((matrix_1 + matrix_2).__str__(), f'{path}/matrix+.txt')
+    save_results((matrix_1 + matrix_2).__str__(), f'{path}/matrix+.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'mul'))
-    save((matrix_1 * matrix_2).__str__(), f'{path}/matrix*.txt')
+    save_results((matrix_1 * matrix_2).__str__(), f'{path}/matrix*.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'matmul'))
-    save((matrix_1 @ matrix_2).__str__(), f'{path}/matrix@.txt')
+    save_results((matrix_1 @ matrix_2).__str__(), f'{path}/matrix@.txt')
 
 
