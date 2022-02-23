@@ -69,7 +69,7 @@ class My_Matrix:
 
     def __str__(self):
         a = '['
-        for i, row in enumerate(X):
+        for i, row in enumerate(self.data):
             if i != len(X) - 1:
                 a += ''.join(str(row)) + '\n'
             else:
