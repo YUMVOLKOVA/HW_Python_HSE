@@ -7,7 +7,7 @@ class BeautifulPrint:
         a = '['
         for i, row in enumerate(self.data):
             if i != len(self.data) - 1:
-                a += ''.join(str(row)) + '\n'
+                a += ','.join(str(row)) + '\n'
             else:
                 a += ''.join(str(row)) + ']'
         return a
