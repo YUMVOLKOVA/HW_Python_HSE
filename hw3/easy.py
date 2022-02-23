@@ -76,10 +76,10 @@ if __name__ == '__main__':
     print(f'matrix_1: \n {matrix_1}')
     print(f'matrix_2: \n {matrix_2}')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'add'))
-    save_results(str_result((matrix_1 + matrix_2).data), f'/{path}/matrix+.txt')
+    save_results(str_result((matrix_1 + matrix_2).data), f'{path}/matrix+.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'mul'))
-    save_results(str_result((matrix_1 * matrix_2).data), f'/{path}/matrix*.txt')
+    save_results(str_result((matrix_1 * matrix_2).data), f'{path}/matrix*.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'matmul'))
-    save_results(str_result((matrix_1 @ matrix_2).data), f'/{path}/matrix@.txt')
+    save_results(str_result((matrix_1 @ matrix_2).data), f'{path}/matrix@.txt')
 
 
