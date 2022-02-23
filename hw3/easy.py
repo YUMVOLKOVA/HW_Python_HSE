@@ -3,13 +3,13 @@ import numpy as np
 def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
     if action == 'add':
         print('add')
-        return np.array(matrix_1 + matrix_2) == (np.array(list_1) + np.array(list_2))
+        return np.array((matrix_1 + matrix_2).data) == (np.array(list_1) + np.array(list_2))
     if action == 'mul':
         print('mul')
-        return np.array(matrix_1 * matrix_2) == (np.array(list_1) * np.array(list_2))
+        return np.array((matrix_1 * matrix_2).data) == (np.array(list_1) * np.array(list_2))
     if action == 'matmul':
         print('matmul')
-        return np.array(matrix_1 @ matrix_2) == (np.array(list_1) @ np.array(list_2))
+        return np.array((matrix_1 @ matrix_2).data) == (np.array(list_1) @ np.array(list_2))
 
 def str_result(data):
     a = '['
