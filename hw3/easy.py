@@ -1,5 +1,21 @@
 import numpy as np
 
+def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
+    if action == 'add':
+        print('add')
+        return (matrix_1 + matrix_2) == (np.array(list_1) + np.array(list_2))
+    if action == 'mul':
+        print('mul')
+        return (matrix_1 * matrix_2) == (np.array(list_1) * np.array(list_2))
+    if action == 'matmul':
+        print('matmul')
+        return (matrix_1 @ matrix_2) == (np.array(list_1) @ np.array(list_2))
+
+def save_results(data, path):
+    with open(path, "w") as f:
+        f.write(data)
+        f.close()
+
 class My_Matrix:
     def __init__(self, data):
         self.data = data
@@ -38,7 +54,17 @@ class My_Matrix:
             matmul_of_matrix.append(row_mul)
         return My_Matrix(matmul_of_matrix)
 
+    def __str__(self):
+        a = '['
+        for i, row in enumerate(X):
+            if i != len(X) - 1:
+                a += ''.join(str(row)) + '\n'
+            else:
+                a += ''.join(str(row)) + ']'
+        return a
+
 if __name__ == '__main__':
+    np.random.seed(0)
     list_1 = np.random.randint(0, 10, (10, 10))
     list_2 = np.random.randint(0, 10, (10, 10))
 
@@ -46,3 +72,11 @@ if __name__ == '__main__':
     matrix_2 = My_Matrix(data=list_2)
 
     path = 'artifacts/easy'
+    print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'add'))
+    save((matrix_1 + matrix_2).__str__(), f'{path}/matrix+.txt')
+    print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'mul'))
+    save((matrix_1 * matrix_2).__str__(), f'{path}/matrix*.txt')
+    print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'matmul'))
+    save((matrix_1 @ matrix_2).__str__(), f'{path}/matrix@.txt')
+
+
