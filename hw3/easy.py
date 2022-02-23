@@ -3,21 +3,22 @@ import numpy as np
 def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
     if action == 'add':
         print('add')
-        print(f'matrix_1: \n {matrix_1}')
-        print(f'matrix_2: \n {matrix_2}')
-        # print(matrix_1 + matrix_2)
-        # print(np.array(list_1) + np.array(list_2))
         return np.array(matrix_1 + matrix_2) == (np.array(list_1) + np.array(list_2))
     if action == 'mul':
         print('mul')
-        # print(matrix_1 * matrix_2)
-        # print(np.array(list_1) * np.array(list_2))
         return np.array(matrix_1 * matrix_2) == (np.array(list_1) * np.array(list_2))
     if action == 'matmul':
         print('matmul')
-        # print(matrix_1 @ matrix_2)
-        # print(np.array(list_1) @ np.array(list_2))
         return np.array(matrix_1 @ matrix_2) == (np.array(list_1) @ np.array(list_2))
+
+def str_result(data):
+    a = '['
+    for i, row in enumerate(data):
+        if i != len(data) - 1:
+            a += ''.join(str(row)) + '\n'
+        else:
+            a += ''.join(str(row)) + ']'
+    return a
 
 def save_results(data, path):
     f = open(path, "w")
@@ -62,14 +63,6 @@ class My_Matrix:
             matmul_of_matrix.append(row_mul)
         return My_Matrix(matmul_of_matrix)
 
-    def __str__(self):
-        a = '['
-        for i, row in enumerate(self.data):
-            if i != len(self.data) - 1:
-                a += ''.join(str(row)) + '\n'
-            else:
-                a += ''.join(str(row)) + ']'
-        return a
 
 if __name__ == '__main__':
     np.random.seed(0)
@@ -80,11 +73,13 @@ if __name__ == '__main__':
     matrix_2 = My_Matrix(data=list_2)
 
     path = 'artifacts/easy'
+    print(f'matrix_1: \n {matrix_1}')
+    print(f'matrix_2: \n {matrix_2}')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'add'))
-    save_results((matrix_1 + matrix_2).__str__(), f'/{path}/matrix+.txt')
+    save_results(str_result(matrix_1 + matrix_2), f'/{path}/matrix+.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'mul'))
-    save_results((matrix_1 * matrix_2).__str__(), f'/{path}/matrix*.txt')
+    save_results(str_result(matrix_1 * matrix_2), f'/{path}/matrix*.txt')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'matmul'))
-    save_results((matrix_1 @ matrix_2).__str__(), f'/{path}/matrix@.txt')
+    save_results(str_result(matrix_1 @ matrix_2), f'/{path}/matrix@.txt')
 
 
