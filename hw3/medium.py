@@ -17,8 +17,9 @@ class BeautifulPrint:
     def __str__(self):
         a = '['
         for i, row in enumerate(self.data):
+            print(row)
             if i != len(self.data) - 1:
-                a += ','.join(row) + '\n'
+                a += ','.join(str(row)) + '\n'
             else:
                 a += ''.join(str(row)) + ']'
         return a
