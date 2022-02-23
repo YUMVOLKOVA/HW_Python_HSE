@@ -63,8 +63,8 @@ if __name__ == '__main__':
     list_1 = np.random.randint(0, 10, (10, 10))
     list_2 = np.random.randint(0, 10, (10, 10))
 
-    matrix_1 = My_Matrix_Medium(data=list_1)
-    matrix_2 = My_Matrix_Medium(data=list_2)
+    matrix_1 = My_Matrix_Medium(value=list_1)
+    matrix_2 = My_Matrix_Medium(value=list_2)
 
     path = 'artifacts/medium'
     print(f'matrix_1: \n {matrix_1.data}')
