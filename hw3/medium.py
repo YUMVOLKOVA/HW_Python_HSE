@@ -15,7 +15,7 @@ def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
 
 class BeautifulPrint:
     def __str__(self):
-        a = '['
+        a = '[['
         for i, row in enumerate(self.data):
             if i != len(self.data) - 1:
                 a += ''.join(str(row)) + '\n'
