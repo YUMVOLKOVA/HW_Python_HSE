@@ -3,16 +3,13 @@ import numpy as np
 def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
     if action == 'add':
         print('add')
-        print('matrix_1: \n')
-        print('matrix_2: \n')
+        print(f'matrix_1: \n {matrix_1}')
+        print(f'matrix_2: \n {matrix_2}')
         print(matrix_1 + matrix_2)
-        print(np.array(list_1) + np.array(list_2))
         print(np.array(list_1) + np.array(list_2))
         return (matrix_1 + matrix_2) == (np.array(list_1) + np.array(list_2))
     if action == 'mul':
         print('mul')
-        print('matrix_1: \n')
-        print('matrix_2: \n')
         print(matrix_1 * matrix_2)
         print(np.array(list_1) * np.array(list_2))
         return (matrix_1 * matrix_2) == (np.array(list_1) * np.array(list_2))
@@ -25,9 +22,9 @@ def check_implementation(list_1, list_2, matrix_1, matrix_2, action):
         return (matrix_1 @ matrix_2) == (np.array(list_1) @ np.array(list_2))
 
 def save_results(data, path):
-    with open(path, "w") as f:
-        f.write(data)
-        f.close()
+    f = open(path, "w")
+    f.write(data)
+    f.close()
 
 class My_Matrix:
     def __init__(self, data):
