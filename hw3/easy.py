@@ -63,7 +63,6 @@ class My_Matrix:
             matmul_of_matrix.append(row_mul)
         return My_Matrix(matmul_of_matrix)
 
-
 if __name__ == '__main__':
     np.random.seed(0)
     list_1 = np.random.randint(0, 10, (10, 10))
