@@ -17,11 +17,10 @@ class BeautifulPrint:
     def __str__(self):
         a = '['
         for i, row in enumerate(self.data):
-            print(row[0])
             if i != len(self.data) - 1:
-                a += ','.join(str(row)) + '\n'
+                a += ', '.join(str(row).split(' ')) + '\n'
             else:
-                a += ''.join(str(row)) + ']'
+                a += ', '.join(str(row).split(' ')) + ']'
         return a
 
 class SaveFile:
@@ -79,8 +78,6 @@ if __name__ == '__main__':
     matrix_2 = My_Matrix_Medium(value=list_2)
 
     path = 'artifacts/medium'
-    print(f'matrix_1: \n {matrix_1.data}')
-    print(f'matrix_2: \n {matrix_2.data}')
     print(f'matrix_1 str: \n {matrix_1.__str__()}')
     print(f'matrix_2 str: \n {matrix_2.__str__()}')
     print(check_implementation(list_1, list_2, matrix_1, matrix_2, 'add'))
