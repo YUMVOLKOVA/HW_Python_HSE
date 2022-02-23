@@ -5,8 +5,8 @@ from numbers import Number
 class BeautifulPrint:
     def __str__(self):
         a = '['
-        for i, row in enumerate(self.value):
-            if i != len(self.value) - 1:
+        for i, row in enumerate(self.data):
+            if i != len(self.data) - 1:
                 a += ''.join(str(row)) + '\n'
             else:
                 a += ''.join(str(row)) + ']'
