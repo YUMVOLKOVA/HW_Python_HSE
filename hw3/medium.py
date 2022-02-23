@@ -41,7 +41,7 @@ class MValue:
     def data(self, value):
         self.data_value = value
 
-class My_Matrix_Medium(NDArrayOperatorsMixin, MValue, BeautifulPrint, SaveFile):
+class My_Matrix_Medium(NDArrayOperatorsMixin, BeautifulPrint, MValue, SaveFile):
     '''
     https://numpy.org/doc/stable/reference/generated/numpy.lib.mixins.NDArrayOperatorsMixin.html
     '''
