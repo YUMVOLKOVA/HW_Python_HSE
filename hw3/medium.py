@@ -1,6 +1,6 @@
 import numpy as np
 from numpy.lib.mixins import NDArrayOperatorsMixin
-import numbers
+from numbers import Number
 
 class BeautifulPrint:
     def __str__(self):
