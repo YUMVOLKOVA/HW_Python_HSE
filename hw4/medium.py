@@ -29,7 +29,7 @@ def integrate_thread(f, a, b, *, n_jobs, n_iter, logger):
         arguments.append((f, data, step, logger))
     with ThreadPoolExecutor(max_workers=n_jobs) as executor:
         result_ = list(executor.map(take_step, arguments))
-    output = result_.sum()
+    output = sum(result_)
     return output
 
 
@@ -41,7 +41,7 @@ def integrate_process(f, a, b, *, n_jobs, n_iter, logger):
         arguments.append((f, data, step, logger))
     with ProcessPoolExecutor(max_workers=n_jobs) as executor:
         result_ = list(executor.map(take_step, arguments))
-    output = result_.sum()
+    output = sum(result_)
     return output
 
 
@@ -58,12 +58,13 @@ params = {'n_jobs': os.cpu_count() * 2,
 if __name__ == "__main__":
     result = {}
     for name, func in dict_with_functions.items():
-        logging.basicConfig(filename=os.path.join(params['path'], f'{name}.txt'),
+        print(f'starting name: {name}')
+        logging.basicConfig(filename=f'artifacts/medium_{name}.txt',
                             level=logging.INFO,
                             format="%(asctime)s ; %(message)s")
         logger = logging.getLogger(os.path.basename(__file__))
         result[str(name)] = []
-        for job in params['n_jobs']:
+        for job in range(1, params['n_jobs']):
             start = time.perf_counter()
             func(f=params['f'],
                  a=params['a'],
@@ -73,8 +74,9 @@ if __name__ == "__main__":
                  logger=logger)
             end = time.perf_counter()
             result[str(name)].append(str(end - start))
-    path_to_save_final = 'artifacts/medium/final.txt'
+        print(f'finished with {name}')
+    path_to_save_final = 'artifacts/medium_final.txt'
     file_to_save = open(path_to_save_final, "w")
     file_to_save.write('n_jobs, threading, processing')
-    for n, t, p in zip(params['n_jobs'], result['thread'], result['process']):
+    for n, t, p in zip(range(1, params['n_jobs']), result['thread'], result['process']):
         file_to_save.write(f'{n}, {t}, {p}')
