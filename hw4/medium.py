@@ -65,7 +65,7 @@ if __name__ == "__main__":
         logger = logging.getLogger(os.path.basename(__file__))
         result[str(name)] = []
         print(params['n_jobs'])
-        for job in range(1, params['n_jobs']):
+        for job in range(1, params['n_jobs'] + 1):
             start = time.perf_counter()
             func(f=params['f'],
                  a=params['a'],
@@ -81,5 +81,5 @@ if __name__ == "__main__":
     file_to_save.write('n_jobs, threading, processing \n')
     print(f'result["thread"]: {result["thread"]}')
     print(f'result["process"]: {result["process"]}')
-    for n, t, p in zip(range(1, params['n_jobs']), result['thread'], result['process']):
+    for n, t, p in zip(range(1, params['n_jobs'] + 1), result['thread'], result['process']):
         file_to_save.write(f'{n}, {t}, {p} \n')
