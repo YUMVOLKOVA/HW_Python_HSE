@@ -48,7 +48,7 @@ def integrate_process(f, a, b, *, n_jobs, n_iter, logger):
 dict_with_functions = {'thread': integrate_thread,
                        'process': integrate_process}
 
-params = {'n_jobs': os.cpu_count(),
+params = {'n_jobs': os.cpu_count() * 2,
           'n_iter': 1000,
           'path': 'artifacts/medium',
           'f': math.cos,
