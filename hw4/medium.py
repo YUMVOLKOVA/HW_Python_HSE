@@ -4,14 +4,8 @@ from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 import time
 import logging
 import os
-
-
-# def init_integrate(f, a, b, *, n_jobs, n_iter):
-#     acc = 0
-#     step = (b - a) / n_iter
-#     for i in range(n_iter):
-#         acc += f(a + i * step) * step
-#     return acc
+import pandas as pd
+import numpy as np
 
 
 def take_step(arg):
@@ -48,9 +42,10 @@ def integrate_process(f, a, b, *, n_jobs, n_iter, logger):
 dict_with_functions = {'thread': integrate_thread,
                        'process': integrate_process}
 
-params = {'n_jobs': os.cpu_count() * 2,
+params = {'n_jobs': range(1, os.cpu_count() * 2 + 1),
           'n_iter': 1000,
-          'path': 'artifacts/medium',
+          'path_log': 'artifacts/medium_logging.txt',
+          'path_final': 'artifacts/medium_final.txt',
           'f': math.cos,
           'a': 0,
           'b': math.pi / 2}
@@ -59,13 +54,13 @@ if __name__ == "__main__":
     result = {}
     for name, func in dict_with_functions.items():
         print(f'starting name: {name}')
-        logging.basicConfig(filename=f'artifacts/medium_{name}.txt',
+        logging.basicConfig(filename=params['path_log'],
                             level=logging.INFO,
-                            format="%(asctime)s ; %(message)s")
+                            format="%(asctime)s -> %(levelname)s  -> %(message)s")
         logger = logging.getLogger(os.path.basename(__file__))
         result[str(name)] = []
         print(params['n_jobs'])
-        for job in range(1, params['n_jobs'] + 1):
+        for job in params['n_jobs']:
             start = time.perf_counter()
             func(f=params['f'],
                  a=params['a'],
@@ -76,10 +71,10 @@ if __name__ == "__main__":
             end = time.perf_counter()
             result[str(name)].append(str(end - start))
         print(f'finished with {name}')
-    path_to_save_final = 'artifacts/medium_final.txt'
-    file_to_save = open(path_to_save_final, "w")
-    file_to_save.write('n_jobs, threading, processing \n')
     print(f'result["thread"]: {result["thread"]}')
     print(f'result["process"]: {result["process"]}')
-    for n, t, p in zip(range(1, params['n_jobs'] + 1), result['thread'], result['process']):
-        file_to_save.write(f'{n}, {t}, {p} \n')
+
+    df = pd.DataFrame({'n_jobs': params['n_jobs'],
+                       'thread': result['thread'],
+                       'process': result['process']})
+    df.to_csv(params['path_final'])
