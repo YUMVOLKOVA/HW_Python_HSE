@@ -64,6 +64,7 @@ if __name__ == "__main__":
                             format="%(asctime)s ; %(message)s")
         logger = logging.getLogger(os.path.basename(__file__))
         result[str(name)] = []
+        print(params['n_jobs'])
         for job in range(1, params['n_jobs']):
             start = time.perf_counter()
             func(f=params['f'],
@@ -77,6 +78,8 @@ if __name__ == "__main__":
         print(f'finished with {name}')
     path_to_save_final = 'artifacts/medium_final.txt'
     file_to_save = open(path_to_save_final, "w")
-    file_to_save.write('n_jobs, threading, processing')
+    file_to_save.write('n_jobs, threading, processing \n')
+    print(f'result["thread"]: {result["thread"]}')
+    print(f'result["process"]: {result["process"]}')
     for n, t, p in zip(range(1, params['n_jobs']), result['thread'], result['process']):
-        file_to_save.write(f'{n}, {t}, {p}')
+        file_to_save.write(f'{n}, {t}, {p} \n')
