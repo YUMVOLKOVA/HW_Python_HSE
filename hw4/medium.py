@@ -56,7 +56,7 @@ if __name__ == "__main__":
         print(f'starting name: {name}')
         logging.basicConfig(filename=params['path_log'],
                             level=logging.INFO,
-                            format="%(asctime)s -> %(levelname)s  -> %(message)s")
+                            format="%(asctime)s -> %(message)s")
         logger = logging.getLogger(os.path.basename(__file__))
         result[str(name)] = []
         print(params['n_jobs'])
