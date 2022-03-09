@@ -10,7 +10,7 @@
 ### Medium
 
 Переписать функцию **integrate** для того, чтобы ее выполнение можно было распараллелить. 
-Иcпользовать concurrent.futures: **ThreadPoolExecutor** и **ProcessPoolExecutor**.  
+Иcпользовать concurrent.futures: ThreadPoolExecutor и ProcessPoolExecutor.  
 Добавить логирование (когда какая задача запускается), 
 сравнить время выполнения для integrate(math.cos, 0, math.pi / 2, n_jobs=n_jobs) 
 при разном числе n_jobs (от 1 до cpu_num*2)
