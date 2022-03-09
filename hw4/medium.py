@@ -45,7 +45,7 @@ dict_with_functions = {'thread': integrate_thread,
 params = {'n_jobs': range(1, os.cpu_count() * 2 + 1),
           'n_iter': 1000,
           'path_log': 'artifacts/medium_logging.txt',
-          'path_final': 'artifacts/medium_final.txt',
+          'path_final': 'artifacts/medium_final.csv',
           'f': math.cos,
           'a': 0,
           'b': math.pi / 2}
@@ -77,4 +77,4 @@ if __name__ == "__main__":
     df = pd.DataFrame({'n_jobs': params['n_jobs'],
                        'thread': result['thread'],
                        'process': result['process']})
-    df.to_csv(params['path_final'])
+    df.to_csv(params['path_final'], index=False)
