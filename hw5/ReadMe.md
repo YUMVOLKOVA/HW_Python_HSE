@@ -5,3 +5,6 @@ https://thisxdoesnotexist.com/
 или https://picsum.photos/. 
 Сделать питоновский скрипт, которому можно указать количество отличных друг от друга файлов, 
 которые нужно загрузить в нужную папку. Использовать aiohttp. 
+
+
+!python easy.py -n 20 -path 'artifacts/easy'
