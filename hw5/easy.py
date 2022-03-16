@@ -2,7 +2,6 @@
 import argparse
 import asyncio
 import pip
-import pip
 import time
 
 try:
@@ -10,6 +9,7 @@ try:
 except ModuleNotFoundError:
     pip.main(['install', "aiohttp"])
     import aiohttp
+
 #####
 # из лекции
 # async def download_site(url, session):
@@ -27,7 +27,7 @@ except ModuleNotFoundError:
 #####
 
 params = {'url': 'https://picsum.photos/id/',
-          'dream': 1}
+          'dream': 1.5}
 
 
 async def download_site(url, session, path):
@@ -45,6 +45,7 @@ async def download_all_sites(n, path):
         for url in range(int(n)):
             task = asyncio.create_task(download_site(str(params['url']) + str(url) + '/200', session, path))
             tasks.append(task)
+        print('done with create_task')
         return await asyncio.gather(*tasks)
 
 
