@@ -3,12 +3,12 @@ import argparse
 import asyncio
 import pip
 
+import pip
 try:
     import aiohttp
-except:
-    !pip install aiohttp
+except ModuleNotFoundError:
+    pip.main(['install', "aiohttp"])
     import aiohttp
-
 #####
 # из лекции
 # async def download_site(url, session):
