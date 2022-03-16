@@ -2,6 +2,7 @@
 import argparse
 import asyncio
 import pip
+import time
 
 import pip
 try:
@@ -30,14 +31,17 @@ params = {'url': 'https://picsum.photos/id/',
 
 
 async def download_site(url, session, path):
+    print(f'current url: {url}')
     async with session.get(url) as response:
         with open(f'{path}/{url}.png', "bw") as f:
-            f.write((await response.content.read()))
+            f.write((await response.read()))
+            print('done with write')
         time.sleep(params['dream'])
 
 
 async def download_all_sites(n, path):
     async with aiohttp.ClientSession() as session:
+        print('start')
         tasks = []
         for url in range(int(n)):
             task = asyncio.create_task(download_site(str(params['url']) + str(url) + '/200', session, path))
