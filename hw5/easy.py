@@ -2,9 +2,9 @@
 import argparse
 import asyncio
 import pip
+import pip
 import time
 
-import pip
 try:
     import aiohttp
 except ModuleNotFoundError:
@@ -33,10 +33,9 @@ params = {'url': 'https://picsum.photos/id/',
 async def download_site(url, session, path):
     print(f'current url: {url}')
     async with session.get(url) as response:
-        with open(f'{path}/{url}.png', "bw") as f:
+        with open(f'{path}/{url.replace("https://", "").replace("/", "_").replace(".", "_")}.jpg', "bw") as f:
             f.write((await response.read()))
-            print('done with write')
-        time.sleep(params['dream'])
+    time.sleep(params['dream'])
 
 
 async def download_all_sites(n, path):
@@ -46,7 +45,7 @@ async def download_all_sites(n, path):
         for url in range(int(n)):
             task = asyncio.create_task(download_site(str(params['url']) + str(url) + '/200', session, path))
             tasks.append(task)
-    return await asyncio.gather(*tasks)
+        return await asyncio.gather(*tasks)
 
 
 if __name__ == "__main__":
@@ -55,4 +54,5 @@ if __name__ == "__main__":
     parser.add_argument('-path', default='artifacts/easy', help='saving path')
     args = parser.parse_args()
 
-    asyncio.run(download_all_sites(args.n, args.path))
+    mysession = asyncio.get_event_loop()
+    mysession.run_until_complete(download_all_sites(args.n, args.path))
